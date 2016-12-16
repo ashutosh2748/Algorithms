@@ -1,0 +1,67 @@
+package Lab11b;
+
+import java.util.LinkedList;
+
+
+public class Knapsack {
+
+	
+	
+	static LinkedList<Pair> abc;
+	public static void main(String args[])
+	{
+	Integer W=10;
+	abc=new LinkedList();
+	abc.addFirst(new Pair(1,2));
+	abc.addFirst(new Pair(2,2));
+	abc.addFirst(new Pair(4,3));
+	abc.addFirst(new Pair(2,2));
+	abc.addFirst(new Pair(5,5));
+	
+	//abc.
+	
+	Pair p=abc.peekLast();
+	abc.addFirst(new Pair(0,0));
+	System.out.println(Benifit(p,W));
+	
+	}
+	private static Integer Benifit(Pair p, Integer w) {
+		// TODO Auto-generated method stub
+		int bk=p.getBenefit();
+		int wk=p.getWeight();
+		if(abc.indexOf(p)<=0)return 0;
+		else if(wk>w) return Benifit(abc.get(abc.indexOf(p)-1),w);
+		else 
+	return Math.max(Benifit(abc.get(abc.indexOf(p)-1), w),Benifit(abc.get(abc.indexOf(p)-1),w-wk)+bk);
+		
+		
+		
+		
+		
+	}
+}
+
+class Pair {
+	int benefit;
+	int weight;
+	public Pair(int benefit, int weight) {
+		super();
+		this.benefit = benefit;
+		this.weight = weight;
+	}
+	public int getBenefit() {
+		return benefit;
+	}
+	public void setBenefit(int benefit) {
+		this.benefit = benefit;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	
+
+}
+
